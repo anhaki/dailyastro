@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "astronomy")
-data class AstronomyEntity(
+@Entity(tableName = "favoriteAstronomy")
+data class FavoriteAstronomyEntity(
     @PrimaryKey
     @ColumnInfo(name = "date")
     var date: String,

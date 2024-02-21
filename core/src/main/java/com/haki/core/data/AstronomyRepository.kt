@@ -1,6 +1,5 @@
 package com.haki.core.data
 
-import android.util.Log
 import com.haki.core.data.source.local.LocalDataSource
 import com.haki.core.data.source.remote.RemoteDataSource
 import com.haki.core.data.source.remote.network.ApiResponse
@@ -28,33 +27,27 @@ class AstronomyRepository @Inject constructor(
                     DataMapper.mapEntitiesToDomain(it)
                 }
             }
-
-            override fun shouldFetch(data: List<Astronomy>?): Boolean =
-                data.isNullOrEmpty()
-//                true // ganti dengan true jika ingin selalu mengambil data dari internet
+            override fun shouldFetch(data: List<Astronomy>?): Boolean = data.isNullOrEmpty()
 
             override suspend fun createCall(): Flow<ApiResponse<List<ApodResponse>>> {
-                Log.d("ancika", "soialn")
                 return remoteDataSource.getAllAstronomy(startDate, endDate)
-
             }
 
             override suspend fun saveCallResult(data: List<ApodResponse>) {
-                val tourismList = DataMapper.mapResponsesToEntities(data)
-                localDataSource.insertAstronomy(tourismList)
+                val astronomyList = DataMapper.mapResponsesToEntities(data)
+                localDataSource.insertAstronomy(astronomyList)
             }
         }.asFlow()
 
     override fun getFavoriteAstronomy(): Flow<List<Astronomy>> {
         return localDataSource.getFavoriteAstronomy().map {
-            DataMapper.mapEntitiesToDomain(it)
+            DataMapper.mapFavEntitiesToDomain(it)
         }
-
     }
 
-    override fun setFavoriteAstronomy(tourism: Astronomy, state: Boolean) {
-        val astronomyEntity = DataMapper.mapDomainToEntity(tourism)
-        appExecutors.diskIO().execute { localDataSource.setFavoriteAstronomy(astronomyEntity, state) }
+    override suspend fun setFavoriteAstronomy(data: List<Astronomy>) {
+        val astronomyList = DataMapper.mapDomainToFavEntities(data)
+        localDataSource.insertFavoriteAstronomy(astronomyList)
     }
 }
 

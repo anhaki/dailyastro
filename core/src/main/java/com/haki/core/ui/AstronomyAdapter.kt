@@ -40,14 +40,13 @@ class AstronomyAdapter : RecyclerView.Adapter<AstronomyAdapter.ListViewHolder>()
                     .load(data.url)
                     .into(ivPhoto)
                 tvName.text = data.title
-                Log.d("yahhh", data.title)
                 tvDate.text = data.date
             }
         }
 
         init {
             binding.root.setOnClickListener {
-                onItemClick?.invoke(listData[adapterPosition])
+                onItemClick?.invoke(listData[absoluteAdapterPosition])
             }
         }
     }

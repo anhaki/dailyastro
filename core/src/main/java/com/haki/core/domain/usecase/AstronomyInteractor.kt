@@ -10,5 +10,5 @@ class AstronomyInteractor @Inject constructor(private val astronomyRepository: I
 
     override fun getFavoriteAstronomy() = astronomyRepository.getFavoriteAstronomy()
 
-    override fun setFavoriteAstronomy(astronomy: Astronomy, state: Boolean) = astronomyRepository.setFavoriteAstronomy(astronomy, state)
+    override suspend fun setFavoriteAstronomy(data: List<Astronomy>) = astronomyRepository.setFavoriteAstronomy(data)
 }

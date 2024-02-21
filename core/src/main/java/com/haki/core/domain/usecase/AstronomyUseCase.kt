@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface AstronomyUseCase {
     fun getAllAstronomy(startDate: String, endDate: String): Flow<Resource<List<Astronomy>>>
     fun getFavoriteAstronomy(): Flow<List<Astronomy>>
-    fun setFavoriteAstronomy(astronomy: Astronomy, state: Boolean)
+    suspend fun setFavoriteAstronomy(data: List<Astronomy>)
 }

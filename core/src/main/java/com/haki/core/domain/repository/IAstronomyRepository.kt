@@ -10,6 +10,6 @@ interface IAstronomyRepository {
 
     fun getFavoriteAstronomy(): Flow<List<Astronomy>>
 
-    fun setFavoriteAstronomy(tourism: Astronomy, state: Boolean)
+    suspend fun setFavoriteAstronomy(data: List<Astronomy>)
 
 }

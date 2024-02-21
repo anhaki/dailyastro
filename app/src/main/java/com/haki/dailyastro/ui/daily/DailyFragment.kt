@@ -1,5 +1,6 @@
 package com.haki.dailyastro.ui.daily
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.haki.core.data.Resource
 import com.haki.core.ui.AstronomyAdapter
 import com.haki.dailyastro.databinding.FragmentDailyBinding
+import com.haki.dailyastro.ui.detail.DetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,11 +32,11 @@ class DailyFragment : Fragment() {
         if (activity != null) {
 
             val astronomyAdapter = AstronomyAdapter()
-//            astronomyAdapter.onItemClick = { selectedData ->
-//                val intent = Intent(activity, DetailTourismActivity::class.java)
-//                intent.putExtra(DetailTourismActivity.EXTRA_DATA, selectedData)
-//                startActivity(intent)
-//            }
+            astronomyAdapter.onItemClick = { selectedData ->
+                val intent = Intent(activity, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.ASTRO_EXTRA, selectedData)
+                startActivity(intent)
+            }
 
             dailyViewModel.getAstro("2024-01-02", "2024-01-19").observe(viewLifecycleOwner) { astro ->
                 if (astro != null) {
