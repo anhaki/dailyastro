@@ -20,5 +20,8 @@ data class AstronomyEntity(
     var url: String,
 
     @ColumnInfo(name = "hdurl")
-    var hdurl: String?
+    var hdurl: String?,
+
+    @ColumnInfo(name = "isFavorite")
+    var isFavorite: Boolean = false,
 )

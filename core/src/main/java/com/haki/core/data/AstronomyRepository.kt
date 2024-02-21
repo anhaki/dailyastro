@@ -44,5 +44,17 @@ class AstronomyRepository @Inject constructor(
                 localDataSource.insertAstronomy(tourismList)
             }
         }.asFlow()
+
+    override fun getFavoriteAstronomy(): Flow<List<Astronomy>> {
+        return localDataSource.getFavoriteAstronomy().map {
+            DataMapper.mapEntitiesToDomain(it)
+        }
+
+    }
+
+    override fun setFavoriteAstronomy(tourism: Astronomy, state: Boolean) {
+        val astronomyEntity = DataMapper.mapDomainToEntity(tourism)
+        appExecutors.diskIO().execute { localDataSource.setFavoriteAstronomy(astronomyEntity, state) }
+    }
 }
 

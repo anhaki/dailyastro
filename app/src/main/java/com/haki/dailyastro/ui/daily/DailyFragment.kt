@@ -17,23 +17,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class DailyFragment : Fragment() {
     private val dailyViewModel: DailyViewModel by viewModels()
 
-    private var _binding: FragmentDailyBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentDailyBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDailyBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        binding = FragmentDailyBinding.inflate(inflater, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
 
@@ -76,10 +68,7 @@ class DailyFragment : Fragment() {
                 adapter = astronomyAdapter
             }
         }
+        return binding.root
+    }
 
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

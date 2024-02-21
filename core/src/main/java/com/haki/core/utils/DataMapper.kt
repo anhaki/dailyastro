@@ -27,7 +27,7 @@ object DataMapper {
                 title = it.title,
                 explanation = it.explanation,
                 url = it.url,
-                hdurl = it.hdurl ?: ""
+                hdurl = it.hdurl ?: "",
             )
         }
 

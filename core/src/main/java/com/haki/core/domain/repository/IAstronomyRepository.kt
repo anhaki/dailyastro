@@ -8,8 +8,8 @@ interface IAstronomyRepository {
 
     fun getAllAstronomy(startDate: String, endDate: String): Flow<Resource<List<Astronomy>>>
 
-//    fun getFavoriteTourism(): Flow<List<Tourism>>
-//
-//    fun setFavoriteTourism(tourism: Tourism, state: Boolean)
+    fun getFavoriteAstronomy(): Flow<List<Astronomy>>
+
+    fun setFavoriteAstronomy(tourism: Astronomy, state: Boolean)
 
 }

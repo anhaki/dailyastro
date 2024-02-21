@@ -11,10 +11,12 @@ class LocalDataSource @Inject constructor(private val tourismDao: AstronomyDao) 
 
     fun getAllAstronomy(startDate: String, endDate: String): Flow<List<AstronomyEntity>> = tourismDao.getAstronomy(startDate = startDate, endDate = endDate)
 
+    fun getFavoriteAstronomy(): Flow<List<AstronomyEntity>> = tourismDao.getFavoriteAstronomy()
+
     suspend fun insertAstronomy(tourismList: List<AstronomyEntity>) = tourismDao.insertAstronomy(tourismList)
 
-//    fun setFavoriteTourism(tourism: AstronomyEntity, newState: Boolean) {
-//        tourism.isFavorite = newState
-//        tourismDao.updateFavoriteTourism(tourism)
-//    }
+    fun setFavoriteAstronomy(astronomy: AstronomyEntity, newState: Boolean) {
+        astronomy.isFavorite = newState
+        tourismDao.updateFavoriteAstronomy(astronomy)
+    }
 }
