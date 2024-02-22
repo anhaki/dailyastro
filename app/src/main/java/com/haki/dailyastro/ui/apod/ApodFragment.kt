@@ -1,6 +1,7 @@
 package com.haki.dailyastro.ui.apod
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,9 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.haki.core.data.Resource
+import com.haki.core.domain.model.Astronomy
 import com.haki.core.ui.AstronomyAdapter
 import com.haki.dailyastro.databinding.FragmentApodBinding
 import com.haki.dailyastro.ui.daily.DailyViewModel
+import com.haki.dailyastro.ui.detail.DetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -24,8 +27,7 @@ class ApodFragment : Fragment() {
 
     private lateinit var binding: FragmentApodBinding
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private lateinit var astroData : Astronomy
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -40,21 +42,19 @@ class ApodFragment : Fragment() {
             val simpleDateFormat2 = SimpleDateFormat("dd MMMM yyyy", Locale.US)
             val currentDate = simpleDateFormat1.format(Date())
 
-//            astronomyAdapter.onItemClick = { selectedData ->
-//                val intent = Intent(activity, DetailTourismActivity::class.java)
-//                intent.putExtra(DetailTourismActivity.EXTRA_DATA, selectedData)
-//                startActivity(intent)
-//            }
+            binding.seeDetail.setOnClickListener {
+                val intent = Intent(activity, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.ASTRO_EXTRA, astroData)
+                startActivity(intent)
+            }
 
             apodViewModel.getTodayAstro(currentDate).observe(viewLifecycleOwner) { astro ->
                 if (astro != null) {
                     when (astro) {
                         is Resource.Loading -> {
-                            Log.d("hacim", astro.data.toString())
 
                         }
                         is Resource.Success -> {
-                            Log.d("wadaw", astro.data.toString())
                             val apod = astro.data?.first()
 //                            binding.progressBar.visibility = View.GONE
                             binding.tvTitle.text = apod?.title
@@ -62,11 +62,17 @@ class ApodFragment : Fragment() {
                                 .load(apod?.url)
                                 .into(binding.ivApod)
                             binding.tvDate.text = "- ${simpleDateFormat2.format(simpleDateFormat1.parse(apod?.date!!) ?: "")} -"
+
+                            astroData = Astronomy(
+                                date = apod.date,
+                                hdurl = apod.hdurl,
+                                explanation = apod.explanation,
+                                title = apod.title,
+                                url = apod.url,
+                            )
                         }
 
                         is Resource.Error -> {
-                            Log.d("elor", astro.data.toString())
-
 //                            binding.progressBar.visibility = View.GONE
 //                            binding.viewError.root.visibility = View.VISIBLE
 //                            binding.viewError.tvError.text =

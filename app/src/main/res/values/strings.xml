@@ -8,4 +8,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="astronomy_photo_of_the_day">Astronomy Photo of The Day</string>
     <string name="today_astronomy_photo">Today Astronomy photo</string>
+    <string name="photo_detail">Photo detail</string>
+    <string name="explanation">Explanation</string>
+    <string name="detail_information">Detail Information</string>
+    <string name="see_details"><![CDATA[See Details >]]></string>
 </resources>

@@ -11,5 +11,4 @@ data class Astronomy(
     val explanation: String,
     val title: String,
     val url: String,
-    val isFavorite: Boolean = false
 ) : Parcelable

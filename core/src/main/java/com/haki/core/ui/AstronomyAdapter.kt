@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 import com.haki.core.R
 import com.haki.core.databinding.DailyItemBinding
 import com.haki.core.domain.model.Astronomy
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class AstronomyAdapter : RecyclerView.Adapter<AstronomyAdapter.ListViewHolder>() {
 
@@ -35,12 +37,15 @@ class AstronomyAdapter : RecyclerView.Adapter<AstronomyAdapter.ListViewHolder>()
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = DailyItemBinding.bind(itemView)
         fun bind(data: Astronomy) {
+            val simpleDateFormat1 = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+            val simpleDateFormat2 = SimpleDateFormat("dd MMMM yyyy", Locale.US)
+
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.url)
                     .into(ivPhoto)
                 tvName.text = data.title
-                tvDate.text = data.date
+                tvDate.text = simpleDateFormat2.format(simpleDateFormat1.parse(data.date) ?: "")
             }
         }
 

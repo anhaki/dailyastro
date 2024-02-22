@@ -1,5 +1,7 @@
 package com.haki.dailyastro
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -25,8 +27,9 @@ class MainActivity : AppCompatActivity() {
 
         navView.itemIconTintList = null
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#2A2A2A")))
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_apod, R.id.navigation_daily, R.id.navigation_favorite, R.id.navigation_settings

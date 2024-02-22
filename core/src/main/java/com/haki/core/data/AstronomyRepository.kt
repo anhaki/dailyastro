@@ -1,5 +1,6 @@
 package com.haki.core.data
 
+import android.util.Log
 import com.haki.core.data.source.local.LocalDataSource
 import com.haki.core.data.source.remote.RemoteDataSource
 import com.haki.core.data.source.remote.network.ApiResponse
@@ -24,10 +25,21 @@ class AstronomyRepository @Inject constructor(
         object : NetworkBoundResource<List<Astronomy>, List<ApodResponse>>() {
             override fun loadFromDB(): Flow<List<Astronomy>> {
                 return localDataSource.getAllAstronomy(startDate, endDate).map {
+                    Log.e("folks", startDate)
+                    Log.e("folksssssss", endDate)
+
                     DataMapper.mapEntitiesToDomain(it)
                 }
             }
-            override fun shouldFetch(data: List<Astronomy>?): Boolean = data.isNullOrEmpty()
+            override fun shouldFetch(data: List<Astronomy>?): Boolean {
+//                Log.e("muley", startDate)
+//                Log.e("selesey", endDate)
+//                Log.e("pirs", data?.first()?.date.toString())
+//                Log.e("lats", data?.last()?.date.toString())
+//                Log.e("anjirs", (data?.first()?.date.toString() != startDate).toString())
+                return data.isNullOrEmpty() || ((data.first().date != startDate) || (data.last().date != endDate))
+//                return true
+            }
 
             override suspend fun createCall(): Flow<ApiResponse<List<ApodResponse>>> {
                 return remoteDataSource.getAllAstronomy(startDate, endDate)

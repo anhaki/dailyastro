@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="130dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp">
@@ -23,34 +24,38 @@
             android:layout_height="130dp"
             android:scaleType="centerCrop"/>
     </com.google.android.material.card.MaterialCardView>
-    <TextView
-        android:id="@+id/tv_name"
+
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/inter_extra_bold"
-        android:layout_marginStart="13dp"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toEndOf="@id/cv_photo"
         app:layout_constraintTop_toTopOf="@id/cv_photo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_date"
-        android:text="The Cat's Eye Nebula in Optical and X-ray"
-        android:ellipsize="end"
-        android:textColor="#BAC1C7"
-        android:maxLines="2"/>
+        android:orientation="vertical"
+        android:layout_marginStart="13dp"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_extra_bold"
+            tools:text="The Cat's Eye Nebula in Optical and X-ray"
+            android:ellipsize="end"
+            android:textColor="#FFF"
+            android:maxLines="2"/>
 
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/tv_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="17 February 2023"
-        android:textColor="#F3CD50"
-        app:layout_constraintBottom_toBottomOf="@id/cv_photo"/>
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="17 February 2023"
+            android:textColor="#F3CD50"
+            app:layout_constraintBottom_toBottomOf="@id/cv_photo"
+            android:layout_marginTop="5dp"/>
 
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
