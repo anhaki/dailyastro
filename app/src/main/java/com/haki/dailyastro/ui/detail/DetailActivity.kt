@@ -91,13 +91,10 @@ class DetailActivity : AppCompatActivity() {
                 detailViewModel.setAstronomyFavorite(listData)
                 true
             }
+        } else{
+            onBackPressedDispatcher.onBackPressed()
         }
             return true
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressedDispatcher.onBackPressed()
-        return true
     }
 
     companion object{
