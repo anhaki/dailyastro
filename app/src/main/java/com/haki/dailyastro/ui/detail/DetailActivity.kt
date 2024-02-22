@@ -5,14 +5,28 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.haki.core.domain.model.Astronomy
 import com.haki.dailyastro.R
 import com.haki.dailyastro.databinding.ActivityDetailBinding
+import com.haki.dailyastro.ui.daily.DailyViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
+    private val detailViewModel: DetailViewModel by viewModels()
+
     private lateinit var binding: ActivityDetailBinding
+    private lateinit var dataDate: String
+    private var isFav: Boolean = false
+    private var menu: Menu? = null
+    private lateinit var listData: List<Astronomy>
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +44,55 @@ class DetailActivity : AppCompatActivity() {
         Glide.with(this)
             .load(dataDetail?.url)
             .into(binding.ivPhoto)
+
+        dataDate = dataDetail?.date.toString()
+        if (dataDetail != null) {
+            listData = listOf(
+                Astronomy(
+                    date = dataDetail.date,
+                    hdurl = dataDetail.hdurl,
+                    explanation = dataDetail.explanation,
+                    title = dataDetail.title,
+                    url = dataDetail.url,
+                )
+            )
+        }
+    }
+
+    private fun isFavorite(date: String){
+        detailViewModel.isFav(date).observe(this){isFavorite ->
+            isFav = if(isFavorite){
+                menu?.findItem(R.id.menu_favorite)?.setIcon(R.drawable.menu_star)
+                true
+            }else{
+                menu?.findItem(R.id.menu_favorite)?.setIcon(R.drawable.menu_star_outline)
+                false
+            }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        this.menu = menu
+        isFavorite(dataDate)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val menuId = item.itemId
+
+        if (menuId == R.id.menu_favorite) {
+            isFav = if(isFav){
+                menu?.findItem(R.id.menu_favorite)?.setIcon(R.drawable.menu_star_outline)
+                detailViewModel.deleteFavorite(dataDate)
+                false
+            } else{
+                menu?.findItem(R.id.menu_favorite)?.setIcon(R.drawable.menu_star)
+                detailViewModel.setAstronomyFavorite(listData)
+                true
+            }
+        }
+            return true
     }
 
     override fun onSupportNavigateUp(): Boolean {

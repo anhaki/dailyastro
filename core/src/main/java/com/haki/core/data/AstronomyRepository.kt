@@ -2,6 +2,7 @@ package com.haki.core.data
 
 import android.util.Log
 import com.haki.core.data.source.local.LocalDataSource
+import com.haki.core.data.source.local.entity.FavoriteAstronomyEntity
 import com.haki.core.data.source.remote.RemoteDataSource
 import com.haki.core.data.source.remote.network.ApiResponse
 import com.haki.core.data.source.remote.response.ApodResponse
@@ -57,9 +58,20 @@ class AstronomyRepository @Inject constructor(
         }
     }
 
-    override suspend fun setFavoriteAstronomy(data: List<Astronomy>) {
+    override fun isFavorite(date: String): Flow<List<Astronomy>> {
+        return localDataSource.isFavorite(date).map {
+            DataMapper.mapFavEntitiesToDomain(it)
+        }
+    }
+
+    override fun deleteFavorite(date: String){
+        appExecutors.diskIO().execute {localDataSource.deleteFavorite(date)}
+    }
+
+    override fun setFavoriteAstronomy(data: List<Astronomy>) {
         val astronomyList = DataMapper.mapDomainToFavEntities(data)
-        localDataSource.insertFavoriteAstronomy(astronomyList)
+        appExecutors.diskIO().execute{localDataSource.insertFavoriteAstronomy(astronomyList)}
+
     }
 }
 

@@ -8,13 +8,19 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LocalDataSource @Inject constructor(private val tourismDao: AstronomyDao) {
+class LocalDataSource @Inject constructor(private val astronomyDao: AstronomyDao) {
 
-    fun getAllAstronomy(startDate: String, endDate: String): Flow<List<AstronomyEntity>> = tourismDao.getAstronomy(startDate = startDate, endDate = endDate)
+    fun getAllAstronomy(startDate: String, endDate: String): Flow<List<AstronomyEntity>> = astronomyDao.getAstronomy(startDate = startDate, endDate = endDate)
 
-    suspend fun insertAstronomy(astronomyList: List<AstronomyEntity>) = tourismDao.insertAstronomy(astronomyList)
+    suspend fun insertAstronomy(astronomyList: List<AstronomyEntity>) = astronomyDao.insertAstronomy(astronomyList)
 
-    fun getFavoriteAstronomy(): Flow<List<FavoriteAstronomyEntity>> = tourismDao.getFavoriteAstronomy()
+    fun getFavoriteAstronomy(): Flow<List<FavoriteAstronomyEntity>> = astronomyDao.getFavoriteAstronomy()
 
-    suspend fun insertFavoriteAstronomy(astronomyList: List<FavoriteAstronomyEntity>) = tourismDao.insertFavoriteAstronomy(astronomyList)
+    fun isFavorite(date: String): Flow<List<FavoriteAstronomyEntity>> = astronomyDao.isFavorite(date)
+
+    fun deleteFavorite(date: String){
+        astronomyDao.deleteFavorite(date)
+    }
+
+    fun insertFavoriteAstronomy(astronomyList: List<FavoriteAstronomyEntity>) = astronomyDao.insertFavoriteAstronomy(astronomyList)
 }

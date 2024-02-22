@@ -16,11 +16,17 @@ interface AstronomyDao {
     fun getAstronomy(startDate: String, endDate: String): Flow<List<AstronomyEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAstronomy(tourism: List<AstronomyEntity>)
+    suspend fun insertAstronomy(astronomy: List<AstronomyEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFavoriteAstronomy(tourism: List<FavoriteAstronomyEntity>)
+    fun insertFavoriteAstronomy(astronomy: List<FavoriteAstronomyEntity>)
 
     @Query("SELECT * FROM favoriteAstronomy")
     fun getFavoriteAstronomy(): Flow<List<FavoriteAstronomyEntity>>
+
+    @Query("DELETE FROM favoriteAstronomy WHERE date = :date")
+    fun deleteFavorite(date: String)
+
+    @Query("SELECT * FROM favoriteAstronomy WHERE date = :date")
+    fun isFavorite(date: String): Flow<List<FavoriteAstronomyEntity>>
 }

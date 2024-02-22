@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/navigation_favorite"
-        android:icon="@drawable/icon_star"
+        android:id="@+id/menu_favorite"
+        android:icon="@drawable/menu_star_outline"
         android:title="@string/title_favorite"
         app:showAsAction="always"/>
 </menu>
