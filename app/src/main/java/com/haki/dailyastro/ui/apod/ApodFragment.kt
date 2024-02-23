@@ -7,12 +7,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.haki.core.data.Resource
 import com.haki.core.domain.model.Astronomy
 import com.haki.core.ui.AstronomyAdapter
+import com.haki.dailyastro.R
 import com.haki.dailyastro.databinding.FragmentApodBinding
 import com.haki.dailyastro.ui.daily.DailyViewModel
 import com.haki.dailyastro.ui.detail.DetailActivity
@@ -56,7 +59,6 @@ class ApodFragment : Fragment() {
                         }
                         is Resource.Success -> {
                             val apod = astro.data?.first()
-//                            binding.progressBar.visibility = View.GONE
                             binding.tvTitle.text = apod?.title
                             Glide.with(this)
                                 .load(apod?.url)
@@ -73,16 +75,33 @@ class ApodFragment : Fragment() {
                         }
 
                         is Resource.Error -> {
-//                            binding.progressBar.visibility = View.GONE
-//                            binding.viewError.root.visibility = View.VISIBLE
-//                            binding.viewError.tvError.text =
-//                                astro.message ?: getString(R.string.something_wrong)
+                            showSnackBar(astro.message.toString())
                         }
                     }
                 }
             }
         }
-
         return binding.root
     }
+
+    private fun showSnackBar(msg: String) {
+        Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            msg,
+            Snackbar.LENGTH_LONG
+        )
+            .setAction(getString(R.string.close)) { }
+            .setActionTextColor(ContextCompat.getColor(requireActivity(), R.color.main_orange))
+            .show()
+    }
+
+//    private fun showLoading(isLoad: Boolean) {
+//        if (isLoad) {
+//            binding.progress.visibility = View.VISIBLE
+//            binding.rvHome.visibility = View.INVISIBLE
+//        } else {
+//            binding.progress.visibility = View.GONE
+//            binding.rvHome.visibility = View.VISIBLE
+//        }
+//    }
 }

@@ -26,9 +26,6 @@ class AstronomyRepository @Inject constructor(
         object : NetworkBoundResource<List<Astronomy>, List<ApodResponse>>() {
             override fun loadFromDB(): Flow<List<Astronomy>> {
                 return localDataSource.getAllAstronomy(startDate, endDate).map {
-                    Log.e("folks", startDate)
-                    Log.e("folksssssss", endDate)
-
                     DataMapper.mapEntitiesToDomain(it)
                 }
             }

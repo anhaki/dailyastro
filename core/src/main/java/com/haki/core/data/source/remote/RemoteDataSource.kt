@@ -19,7 +19,6 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
         return flow {
             try {
                 val response = apiService.getAstronomy("wnM943J8CGUZaK7RNHdrRzKFyQ4vK2IYYXWPuBUm", startDate, endDate)
-                Log.e("asu", "sialan")
                 emit(ApiResponse.Success(response))
             } catch (e : Exception){
                 emit(ApiResponse.Error(e.toString()))

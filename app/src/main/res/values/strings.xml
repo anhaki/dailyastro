@@ -12,4 +12,5 @@
     <string name="explanation">Explanation</string>
     <string name="detail_information">Detail Information</string>
     <string name="see_details"><![CDATA[See Details >]]></string>
+    <string name="close">Close</string>
 </resources>

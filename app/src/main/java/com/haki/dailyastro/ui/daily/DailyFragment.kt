@@ -6,11 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.haki.core.data.Resource
 import com.haki.core.ui.AstronomyAdapter
+import com.haki.dailyastro.R
 import com.haki.dailyastro.databinding.FragmentDailyBinding
 import com.haki.dailyastro.ui.detail.DetailActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,27 +41,20 @@ class DailyFragment : Fragment() {
                 startActivity(intent)
             }
 
-            dailyViewModel.getAstro("2024-01-01", "2024-02-22").observe(viewLifecycleOwner) { astro ->
+            dailyViewModel.getAstro("2023-12-30", "2024-02-22").observe(viewLifecycleOwner) { astro ->
                 if (astro != null) {
                     when (astro) {
                         is Resource.Loading -> {
-                            Log.d("hacim", astro.data.toString())
-
+                            showLoading(isLoad = true)
                         }
                         is Resource.Success -> {
-                            Log.d("wadaw", astro.data.toString())
-//                            binding.progressBar.visibility = View.GONE
+                            showLoading(isLoad = false)
                             astronomyAdapter.setData(astro.data)
-
                         }
 
                         is Resource.Error -> {
-                            Log.d("elor", astro.data.toString())
-
-//                            binding.progressBar.visibility = View.GONE
-//                            binding.viewError.root.visibility = View.VISIBLE
-//                            binding.viewError.tvError.text =
-//                                astro.message ?: getString(R.string.something_wrong)
+                            showLoading(isLoad = false)
+                            showSnackBar(astro.message.toString())
                         }
                     }
                 }
@@ -71,6 +67,27 @@ class DailyFragment : Fragment() {
             }
         }
         return binding.root
+    }
+
+    private fun showSnackBar(msg: String) {
+        Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            msg,
+            Snackbar.LENGTH_LONG
+        )
+            .setAction(getString(R.string.close)) { }
+            .setActionTextColor(ContextCompat.getColor(requireActivity(), R.color.main_orange))
+            .show()
+    }
+
+    private fun showLoading(isLoad: Boolean) {
+        if (isLoad) {
+            binding.progress.visibility = View.VISIBLE
+            binding.rvAstro.visibility = View.INVISIBLE
+        } else {
+            binding.progress.visibility = View.GONE
+            binding.rvAstro.visibility = View.VISIBLE
+        }
     }
 
 }
