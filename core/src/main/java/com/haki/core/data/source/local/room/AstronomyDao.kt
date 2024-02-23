@@ -21,7 +21,7 @@ interface AstronomyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFavoriteAstronomy(astronomy: List<FavoriteAstronomyEntity>)
 
-    @Query("SELECT * FROM favoriteAstronomy")
+    @Query("SELECT * FROM favoriteAstronomy ORDER BY date ASC")
     fun getFavoriteAstronomy(): Flow<List<FavoriteAstronomyEntity>>
 
     @Query("DELETE FROM favoriteAstronomy WHERE date = :date")

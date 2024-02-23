@@ -22,10 +22,4 @@
         android:name="com.haki.dailyastro.ui.favorite.FavoriteFragment"
         android:label="@string/title_favorite"
         tools:layout="@layout/fragment_favorite" />
-
-    <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.haki.dailyastro.ui.settings.SettingsFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
 </navigation>

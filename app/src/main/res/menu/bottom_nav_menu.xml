@@ -16,9 +16,4 @@
         android:icon="@drawable/selector_fav"
         android:title="@string/title_favorite" />
 
-    <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/selector_settings"
-        android:title="@string/title_settings" />
-
 </menu>
