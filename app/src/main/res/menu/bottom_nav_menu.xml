@@ -10,10 +10,4 @@
         android:id="@+id/navigation_apod"
         android:icon="@drawable/selector_apod"
         android:title="@string/title_apod" />
-
-    <item
-        android:id="@+id/navigation_favorite"
-        android:icon="@drawable/selector_fav"
-        android:title="@string/title_favorite" />
-
 </menu>
