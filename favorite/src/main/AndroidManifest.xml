@@ -20,8 +20,8 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
-                    android:scheme="dailyastro"
-                    android:host="favorite" />
+                    android:host="favorite"
+                    android:scheme="dailyastro" />
             </intent-filter>
 
         </activity>

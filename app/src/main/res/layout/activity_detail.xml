@@ -4,77 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailActivity"
-    android:background="@color/main_black">
+    android:background="@color/main_black"
+    tools:context=".ui.detail.DetailActivity">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_photo"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="25dp"
         app:cardCornerRadius="20dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/second_grey"
-        android:layout_marginHorizontal="30dp"
         app:strokeWidth="5dp">
+
         <ImageView
             android:id="@+id/iv_photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/photo_detail"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
-            android:contentDescription="@string/photo_detail"/>
+            android:src="@drawable/ic_launcher_background" />
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/cv_photo"
-        tools:text="The Cat's Eye Nebula in Optical and X-ray"
-        android:fontFamily="@font/inter_extra_bold"
-        android:textSize="30sp"
-        android:textColor="@color/main_orange"
         android:layout_marginHorizontal="15dp"
-        />
+        android:fontFamily="@font/inter_extra_bold"
+        android:textColor="@color/main_orange"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/cv_photo"
+        tools:text="The Cat's Eye Nebula in Optical and X-ray" />
 
     <TextView
         android:id="@+id/exp_ttl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/explanation"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        android:fontFamily="@font/inter_bold"
-        android:textSize="20sp"
-        android:textColor="@color/white"
         android:layout_marginHorizontal="15dp"
-        />
+        android:fontFamily="@font/inter_bold"
+        android:text="@string/explanation"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/dvd"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        app:layout_constraintTop_toBottomOf="@id/exp_ttl"
-        app:dividerColor="@color/main_orange"
         android:layout_marginHorizontal="10dp"
-        />
+        app:dividerColor="@color/main_orange"
+        app:layout_constraintTop_toBottomOf="@id/exp_ttl" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/dvd"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:clipToPadding="false"
+        android:paddingHorizontal="15dp"
         android:paddingTop="5dp"
         android:paddingBottom="10dp"
-        android:clipToPadding="false"
-        android:paddingHorizontal="15dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dvd">
+
         <TextView
             android:id="@+id/tv_explanation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="18sp"
-            tools:text="Can a rocket make the Moon ripple? No, but it can make a background moon appear wavy.  The rocket, in this case, was a SpaceX Falcon Heavy that blasted off from NASA's Kennedy Space Center last week. In the featured launch picture, the rocket's exhaust plume glows beyond its projection onto the distant, rising, and nearly full moon.  Oddly, the Moon's lower edge shows unusual drip-like ripples. The Moon itself, far in the distance, was really unchanged.  The physical cause of these apparent ripples was pockets of relatively hot or rarefied air deflecting moonlight less strongly than pockets of relatively cool or compressed air: refraction. Although the shot was planned, the timing of the launch had to be just right for the rocket to be transiting the Moon during this single exposure."/>
+            tools:text="Can a rocket make the Moon ripple? No, but it can make a background moon appear wavy.  The rocket, in this case, was a SpaceX Falcon Heavy that blasted off from NASA's Kennedy Space Center last week. In the featured launch picture, the rocket's exhaust plume glows beyond its projection onto the distant, rising, and nearly full moon.  Oddly, the Moon's lower edge shows unusual drip-like ripples. The Moon itself, far in the distance, was really unchanged.  The physical cause of these apparent ripples was pockets of relatively hot or rarefied air deflecting moonlight less strongly than pockets of relatively cool or compressed air: refraction. Although the shot was planned, the timing of the launch had to be just right for the rocket to be transiting the Moon during this single exposure." />
     </ScrollView>
 
 

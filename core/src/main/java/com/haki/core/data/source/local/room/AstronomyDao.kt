@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
 import com.haki.core.data.source.local.entity.AstronomyEntity
 import com.haki.core.data.source.local.entity.FavoriteAstronomyEntity
 import kotlinx.coroutines.flow.Flow

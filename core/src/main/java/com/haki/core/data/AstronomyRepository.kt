@@ -1,8 +1,6 @@
 package com.haki.core.data
 
-import android.util.Log
 import com.haki.core.data.source.local.LocalDataSource
-import com.haki.core.data.source.local.entity.FavoriteAstronomyEntity
 import com.haki.core.data.source.remote.RemoteDataSource
 import com.haki.core.data.source.remote.network.ApiResponse
 import com.haki.core.data.source.remote.response.ApodResponse
@@ -22,13 +20,17 @@ class AstronomyRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) : IAstronomyRepository {
 
-    override fun getAllAstronomy(startDate: String, endDate: String): Flow<Resource<List<Astronomy>>> =
+    override fun getAllAstronomy(
+        startDate: String,
+        endDate: String
+    ): Flow<Resource<List<Astronomy>>> =
         object : NetworkBoundResource<List<Astronomy>, List<ApodResponse>>() {
             override fun loadFromDB(): Flow<List<Astronomy>> {
                 return localDataSource.getAllAstronomy(startDate, endDate).map {
                     DataMapper.mapEntitiesToDomain(it)
                 }
             }
+
             override fun shouldFetch(data: List<Astronomy>?): Boolean {
 //                Log.e("muley", startDate)
 //                Log.e("selesey", endDate)
@@ -61,13 +63,13 @@ class AstronomyRepository @Inject constructor(
         }
     }
 
-    override fun deleteFavorite(date: String){
-        appExecutors.diskIO().execute {localDataSource.deleteFavorite(date)}
+    override fun deleteFavorite(date: String) {
+        appExecutors.diskIO().execute { localDataSource.deleteFavorite(date) }
     }
 
     override fun setFavoriteAstronomy(data: List<Astronomy>) {
         val astronomyList = DataMapper.mapDomainToFavEntities(data)
-        appExecutors.diskIO().execute{localDataSource.insertFavoriteAstronomy(astronomyList)}
+        appExecutors.diskIO().execute { localDataSource.insertFavoriteAstronomy(astronomyList) }
 
     }
 }

@@ -4,61 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.apod.ApodFragment"
-    android:background="@color/main_black">
+    android:background="@color/main_black"
+    tools:context=".ui.apod.ApodFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center">
+
         <TextView
             android:id="@+id/text_apod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:textAlignment="center"
-            android:textSize="35sp"
-            android:text="@string/astronomy_photo_of_the_day"
             android:fontFamily="@font/inter_black"
+            android:text="@string/astronomy_photo_of_the_day"
+            android:textAlignment="center"
+            android:textColor="@color/main_orange"
+            android:textSize="35sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/cv_photo"
-            android:textColor="@color/main_orange"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_photo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/text_apod"
-            app:layout_constraintDimensionRatio="1:1"
-            android:layout_marginTop="20dp"
             android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toBottomOf="@id/text_apod"
             app:strokeColor="@color/main_orange"
             app:strokeWidth="5dp">
+
             <ImageView
                 android:id="@+id/iv_apod"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/today_astronomy_photo"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
-                android:contentDescription="@string/today_astronomy_photo"/>
+                android:src="@drawable/ic_launcher_background" />
+
             <TextView
                 android:id="@+id/see_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
-                android:text="@string/see_details"
-                android:textSize="18sp"
-                android:layout_marginBottom="5dp"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="@font/inter_bold"
-                android:textColor="@color/main_black"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/rounded_orange"
-                android:paddingTop="3dp"
+                android:fontFamily="@font/inter_bold"
                 android:paddingStart="10dp"
-                android:paddingEnd="5dp"/>
+                android:paddingTop="3dp"
+                android:paddingEnd="5dp"
+                android:text="@string/see_details"
+                android:textColor="@color/main_black"
+                android:textSize="18sp" />
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
@@ -66,25 +69,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
-            app:layout_constraintTop_toBottomOf="@id/cv_photo"
-            tools:text="“The Cat's Eye Nebula in Optical and X-ray”"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:fontFamily="@font/inter_bold"
             android:layout_marginTop="20dp"
-            android:textColor="@color/second_grey"/>
+            android:fontFamily="@font/inter_bold"
+            android:textAlignment="center"
+            android:textColor="@color/second_grey"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@id/cv_photo"
+            tools:text="“The Cat's Eye Nebula in Optical and X-ray”" />
 
         <TextView
             android:id="@+id/tv_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:text="- 7 January 2024 -"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:fontFamily="@font/inter_medium"
             android:layout_marginTop="10dp"
-            android:textColor="@color/main_orange"/>
+            android:fontFamily="@font/inter_medium"
+            android:textAlignment="center"
+            android:textColor="@color/main_orange"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="- 7 January 2024 -" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

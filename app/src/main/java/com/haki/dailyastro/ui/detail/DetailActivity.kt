@@ -3,19 +3,16 @@ package com.haki.dailyastro.ui.detail
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.haki.core.domain.model.Astronomy
 import com.haki.dailyastro.R
 import com.haki.dailyastro.databinding.ActivityDetailBinding
-import com.haki.dailyastro.ui.daily.DailyViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,12 +56,12 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun isFavorite(date: String){
-        detailViewModel.isFav(date).observe(this){isFavorite ->
-            isFav = if(isFavorite){
+    private fun isFavorite(date: String) {
+        detailViewModel.isFav(date).observe(this) { isFavorite ->
+            isFav = if (isFavorite) {
                 menu?.findItem(R.id.menu_favorite)?.setIcon(R.drawable.menu_star)
                 true
-            }else{
+            } else {
                 menu?.findItem(R.id.menu_favorite)?.setIcon(R.drawable.menu_star_outline)
                 false
             }
@@ -82,22 +79,22 @@ class DetailActivity : AppCompatActivity() {
         val menuId = item.itemId
 
         if (menuId == R.id.menu_favorite) {
-            isFav = if(isFav){
+            isFav = if (isFav) {
                 menu?.findItem(R.id.menu_favorite)?.setIcon(R.drawable.menu_star_outline)
                 detailViewModel.deleteFavorite(dataDate)
                 false
-            } else{
+            } else {
                 menu?.findItem(R.id.menu_favorite)?.setIcon(R.drawable.menu_star)
                 detailViewModel.setAstronomyFavorite(listData)
                 true
             }
-        } else{
+        } else {
             onBackPressedDispatcher.onBackPressed()
         }
-            return true
+        return true
     }
 
-    companion object{
+    companion object {
         const val ASTRO_EXTRA = "ASTRO_EXTRA"
     }
 }

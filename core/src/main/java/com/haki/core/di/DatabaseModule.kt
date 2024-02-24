@@ -17,10 +17,11 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideDatabase(@ApplicationContext context: Context): AstronomyDatabase = Room.databaseBuilder(
-        context,
-        AstronomyDatabase::class.java, "Astronomy.db"
-    ).fallbackToDestructiveMigration().build()
+    fun provideDatabase(@ApplicationContext context: Context): AstronomyDatabase =
+        Room.databaseBuilder(
+            context,
+            AstronomyDatabase::class.java, "Astronomy.db"
+        ).fallbackToDestructiveMigration().build()
 
     @Provides
     fun provideAstronomyDao(database: AstronomyDatabase): AstronomyDao = database.astronomyDao()

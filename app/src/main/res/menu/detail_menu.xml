@@ -5,5 +5,5 @@
         android:id="@+id/menu_favorite"
         android:icon="@drawable/menu_star_outline"
         android:title="@string/title_favorite"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
 </menu>

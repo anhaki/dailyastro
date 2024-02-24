@@ -14,13 +14,20 @@ import javax.inject.Singleton
 @Singleton
 class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
 
-    suspend fun getAllAstronomy(startDate: String, endDate: String): Flow<ApiResponse<List<ApodResponse>>> {
+    suspend fun getAllAstronomy(
+        startDate: String,
+        endDate: String
+    ): Flow<ApiResponse<List<ApodResponse>>> {
         //get data from remote api
         return flow {
             try {
-                val response = apiService.getAstronomy("wnM943J8CGUZaK7RNHdrRzKFyQ4vK2IYYXWPuBUm", startDate, endDate)
+                val response = apiService.getAstronomy(
+                    "wnM943J8CGUZaK7RNHdrRzKFyQ4vK2IYYXWPuBUm",
+                    startDate,
+                    endDate
+                )
                 emit(ApiResponse.Success(response))
-            } catch (e : Exception){
+            } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
                 Log.e("RemoteDataSource", e.toString())
             }

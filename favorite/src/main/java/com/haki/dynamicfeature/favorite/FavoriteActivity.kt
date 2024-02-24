@@ -3,10 +3,9 @@ package com.haki.dynamicfeature.favorite
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.haki.core.ui.AstronomyAdapter
 import com.haki.dailyastro.R
@@ -53,7 +52,7 @@ class FavoriteActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        favoriteViewModel.favorite.observe(this){
+        favoriteViewModel.favorite.observe(this) {
             astronomyAdapter.setData(it)
         }
 

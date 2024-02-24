@@ -1,6 +1,5 @@
 package com.haki.core.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,9 @@ class AstronomyAdapter : RecyclerView.Adapter<AstronomyAdapter.ListViewHolder>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.daily_item, parent, false))
+        ListViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.daily_item, parent, false)
+        )
 
     override fun getItemCount() = listData.size
 

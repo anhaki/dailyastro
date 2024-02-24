@@ -1,7 +1,6 @@
 package com.haki.core.data.source.remote.network
 
 import com.haki.core.data.source.remote.response.ApodResponse
-import com.haki.core.data.source.remote.response.ListApodResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

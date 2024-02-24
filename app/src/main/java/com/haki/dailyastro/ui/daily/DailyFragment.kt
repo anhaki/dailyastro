@@ -2,7 +2,6 @@ package com.haki.dailyastro.ui.daily
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,24 +40,26 @@ class DailyFragment : Fragment() {
                 startActivity(intent)
             }
 
-            dailyViewModel.getAstro("2023-12-30", "2024-02-22").observe(viewLifecycleOwner) { astro ->
-                if (astro != null) {
-                    when (astro) {
-                        is Resource.Loading -> {
-                            showLoading(isLoad = true)
-                        }
-                        is Resource.Success -> {
-                            showLoading(isLoad = false)
-                            astronomyAdapter.setData(astro.data)
-                        }
+            dailyViewModel.getAstro("2023-12-30", "2024-02-22")
+                .observe(viewLifecycleOwner) { astro ->
+                    if (astro != null) {
+                        when (astro) {
+                            is Resource.Loading -> {
+                                showLoading(isLoad = true)
+                            }
 
-                        is Resource.Error -> {
-                            showLoading(isLoad = false)
-                            showSnackBar(astro.message.toString())
+                            is Resource.Success -> {
+                                showLoading(isLoad = false)
+                                astronomyAdapter.setData(astro.data)
+                            }
+
+                            is Resource.Error -> {
+                                showLoading(isLoad = false)
+                                showSnackBar(astro.message.toString())
+                            }
                         }
                     }
                 }
-            }
 
             with(binding.rvAstro) {
                 layoutManager = LinearLayoutManager(context)

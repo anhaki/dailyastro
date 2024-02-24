@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +21,6 @@ import com.haki.dailyastro.ui.detail.DetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
@@ -32,7 +30,7 @@ class ApodFragment : Fragment() {
 
     private lateinit var binding: FragmentApodBinding
 
-    private lateinit var astroData : Astronomy
+    private lateinit var astroData: Astronomy
 
     private lateinit var date: String
     private lateinit var simpleDateFormat1: SimpleDateFormat
@@ -67,20 +65,22 @@ class ApodFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    fun showApod(currentDate: String){
+    fun showApod(currentDate: String) {
         apodViewModel.getTodayAstro(currentDate).observe(viewLifecycleOwner) { astro ->
             if (astro != null) {
                 when (astro) {
                     is Resource.Loading -> {
 
                     }
+
                     is Resource.Success -> {
                         val apod = astro.data?.first()
                         binding.tvTitle.text = apod?.title
                         Glide.with(this)
                             .load(apod?.url)
                             .into(binding.ivApod)
-                        binding.tvDate.text = "- ${simpleDateFormat2.format(simpleDateFormat1.parse(apod?.date!!) ?: "")} -"
+                        binding.tvDate.text =
+                            "- ${simpleDateFormat2.format(simpleDateFormat1.parse(apod?.date!!) ?: "")} -"
 
                         astroData = Astronomy(
                             date = apod.date,

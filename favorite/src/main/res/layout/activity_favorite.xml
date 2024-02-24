@@ -9,17 +9,17 @@
         android:id="@+id/rv_astro"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/daily_item"
-        android:background="@color/main_black"/>
+        android:background="@color/main_black"
+        tools:listitem="@layout/daily_item" />
 
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:layout_constraintTop_toTopOf="@id/rv_astro"
-        app:layout_constraintBottom_toBottomOf="@id/rv_astro"
-        app:layout_constraintStart_toStartOf="@id/rv_astro"
-        app:layout_constraintEnd_toEndOf="@id/rv_astro"
         android:indeterminateTint="@color/main_orange"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/rv_astro"
+        app:layout_constraintEnd_toEndOf="@id/rv_astro"
+        app:layout_constraintStart_toStartOf="@id/rv_astro"
+        app:layout_constraintTop_toTopOf="@id/rv_astro" />
 </androidx.constraintlayout.widget.ConstraintLayout>
