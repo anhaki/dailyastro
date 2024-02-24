@@ -19,3 +19,4 @@ dependencyResolutionManagement {
 rootProject.name = "DailyAstro"
 include(":app")
 include(":core")
+include(":favorite")
