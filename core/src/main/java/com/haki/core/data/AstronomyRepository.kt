@@ -32,13 +32,7 @@ class AstronomyRepository @Inject constructor(
             }
 
             override fun shouldFetch(data: List<Astronomy>?): Boolean {
-//                Log.e("muley", startDate)
-//                Log.e("selesey", endDate)
-//                Log.e("pirs", data?.first()?.date.toString())
-//                Log.e("lats", data?.last()?.date.toString())
-//                Log.e("anjirs", (data?.first()?.date.toString() != startDate).toString())
                 return data.isNullOrEmpty() || ((data.first().date != startDate) || (data.last().date != endDate))
-//                return true
             }
 
             override suspend fun createCall(): Flow<ApiResponse<List<ApodResponse>>> {

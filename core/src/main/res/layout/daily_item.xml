@@ -23,6 +23,7 @@
             android:id="@+id/iv_photo"
             android:layout_width="130dp"
             android:layout_height="130dp"
+            android:contentDescription="@string/photo_of_the_day"
             android:scaleType="centerCrop" />
     </com.google.android.material.card.MaterialCardView>
 
@@ -53,11 +54,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="17 February 2023"
             android:textColor="#F3CD50"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/cv_photo" />
+            app:layout_constraintBottom_toBottomOf="@id/cv_photo"
+            tools:text="17 February 2023" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

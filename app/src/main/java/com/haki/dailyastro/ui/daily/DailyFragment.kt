@@ -40,7 +40,7 @@ class DailyFragment : Fragment() {
                 startActivity(intent)
             }
 
-            dailyViewModel.getAstro("2023-12-30", "2024-02-22")
+            dailyViewModel.getAstro("2024-01-01", "2024-01-31")
                 .observe(viewLifecycleOwner) { astro ->
                     if (astro != null) {
                         when (astro) {
