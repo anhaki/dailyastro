@@ -70,7 +70,7 @@ class ApodFragment : Fragment() {
             if (astro != null) {
                 when (astro) {
                     is Resource.Loading -> {
-
+                        showLoading(true)
                     }
 
                     is Resource.Success -> {
@@ -89,10 +89,13 @@ class ApodFragment : Fragment() {
                             title = apod.title,
                             url = apod.url,
                         )
+
+                        showLoading(false)
                     }
 
                     is Resource.Error -> {
                         showSnackBar(astro.message.toString())
+                        showLoading(false)
                     }
                 }
             }
@@ -110,13 +113,13 @@ class ApodFragment : Fragment() {
             .show()
     }
 
-//    private fun showLoading(isLoad: Boolean) {
-//        if (isLoad) {
-//            binding.progress.visibility = View.VISIBLE
-//            binding.rvHome.visibility = View.INVISIBLE
-//        } else {
-//            binding.progress.visibility = View.GONE
-//            binding.rvHome.visibility = View.VISIBLE
-//        }
-//    }
+    private fun showLoading(isLoad: Boolean) {
+        if (isLoad) {
+            binding.progress.visibility = View.VISIBLE
+            binding.content.visibility = View.INVISIBLE
+        } else {
+            binding.progress.visibility = View.GONE
+            binding.content.visibility = View.VISIBLE
+        }
+    }
 }
