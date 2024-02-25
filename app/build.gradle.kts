@@ -52,8 +52,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -89,7 +89,7 @@ dependencies {
     //dagger
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
-//    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0")
+//    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.1.0")
 
     kapt("androidx.hilt:hilt-compiler:1.1.0")
     kaptAndroidTest("androidx.hilt:hilt-compiler:1.1.0")
