@@ -1,9 +1,10 @@
 plugins {
     id("com.android.dynamic-feature")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
+
 }
 
 apply ("../shared_dependencies.gradle")
@@ -26,6 +27,11 @@ android {
             )
         }
     }
+
+    composeOptions{
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

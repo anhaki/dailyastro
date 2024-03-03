@@ -1,9 +1,10 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
+
 }
 
 apply ("../shared_dependencies.gradle")
@@ -17,6 +18,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+    }
+
+    composeOptions{
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
 
     buildTypes {
@@ -53,7 +58,7 @@ dependencies {
 
     //room
     api("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
     androidTestImplementation("androidx.room:room-testing:2.6.1")
 
     //retrofit
