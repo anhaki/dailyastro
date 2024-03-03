@@ -6,6 +6,8 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+apply ("../shared_dependencies.gradle")
+
 android {
     namespace = "com.haki.dailyastro"
     compileSdk = 34
@@ -58,8 +60,6 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
@@ -86,12 +86,4 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("com.google.android.material:material:1.11.0")
-    //dagger
-    implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-android-compiler:2.48")
-//    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.1.0")
-
-    kapt("androidx.hilt:hilt-compiler:1.1.0")
-    kaptAndroidTest("androidx.hilt:hilt-compiler:1.1.0")
-
 }

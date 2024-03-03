@@ -69,6 +69,4 @@ dependencies {
     api("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     api("androidx.activity:activity-ktx:1.8.2")
     api("androidx.fragment:fragment-ktx:1.6.2")
-
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 }
