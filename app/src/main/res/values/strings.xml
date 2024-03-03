@@ -3,9 +3,6 @@
     <string name="title_apod">APOD</string>
     <string name="title_daily">Daily</string>
     <string name="title_favorite">Favorite Photo</string>
-    <string name="title_settings">Settings</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="astronomy_photo_of_the_day">Astronomy Photo of The Day</string>
     <string name="today_astronomy_photo">Today Astronomy photo</string>
     <string name="photo_detail">Photo detail</string>
