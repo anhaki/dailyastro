@@ -74,4 +74,8 @@ dependencies {
     api("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     api("androidx.activity:activity-ktx:1.8.2")
     api("androidx.fragment:fragment-ktx:1.6.2")
+
+    implementation ("net.zetetic:android-database-sqlcipher:4.4.0")
+    implementation ("androidx.sqlite:sqlite-ktx:2.4.0")
+
 }
