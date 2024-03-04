@@ -1,5 +1,6 @@
 package com.haki.core.data
 
+import android.util.Log
 import com.haki.core.data.source.remote.network.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
@@ -26,6 +27,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
                 is ApiResponse.Error -> {
                     onFetchFailed()
+                    Log.e("WADAWE", apiResponse.errorMessage)
                     emit(Resource.Error(apiResponse.errorMessage))
                 }
             }

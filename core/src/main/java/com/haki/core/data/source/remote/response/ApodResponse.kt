@@ -1,7 +1,9 @@
 package com.haki.core.data.source.remote.response
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class ApodResponse(
     @field:SerializedName("date")
     val date: String,
