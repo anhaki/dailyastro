@@ -21,14 +21,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class DailyFragment : Fragment() {
     private val dailyViewModel: DailyViewModel by viewModels()
 
-    private lateinit var binding: FragmentDailyBinding
+    private var _binding: FragmentDailyBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDailyBinding.inflate(inflater, container, false)
+        _binding = FragmentDailyBinding.inflate(inflater, container, false)
 
 
         if (activity != null) {
@@ -91,4 +92,8 @@ class DailyFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

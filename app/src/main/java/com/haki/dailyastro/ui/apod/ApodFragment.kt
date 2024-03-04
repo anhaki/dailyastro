@@ -28,7 +28,8 @@ import java.util.TimeZone
 class ApodFragment : Fragment() {
     private val apodViewModel: ApodViewModel by viewModels()
 
-    private lateinit var binding: FragmentApodBinding
+    private var _binding: FragmentApodBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var astroData: Astronomy
 
@@ -42,8 +43,8 @@ class ApodFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentApodBinding.inflate(inflater, container, false)
-
+        _binding = FragmentApodBinding.inflate(inflater, container, false)
+        val root: View = binding.root
         if (activity != null) {
             simpleDateFormat1 = SimpleDateFormat("yyyy-MM-dd", Locale.US)
             simpleDateFormat2 = SimpleDateFormat("dd MMMM yyyy", Locale.US)
@@ -61,7 +62,12 @@ class ApodFragment : Fragment() {
             showApod(date)
 
         }
-        return binding.root
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     @SuppressLint("SetTextI18n")
@@ -79,6 +85,7 @@ class ApodFragment : Fragment() {
                         Glide.with(this)
                             .load(apod?.url)
                             .into(binding.ivApod)
+
                         binding.tvDate.text =
                             "- ${simpleDateFormat2.format(simpleDateFormat1.parse(apod?.date!!) ?: "")} -"
 
