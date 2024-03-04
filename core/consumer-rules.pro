@@ -124,4 +124,6 @@
 -keepclassmembers class com.haki.core.data.source.remote.response.ApodResponse {
     public <init>();
 }
-
+-keep class com.haki.core.data.source.remote.response.ApodResponse {
+    public <init>();
+}
