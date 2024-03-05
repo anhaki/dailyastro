@@ -9,10 +9,10 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.haki.core.domain.model.Astronomy
 import com.haki.dailyastro.R
 import com.haki.dailyastro.databinding.ActivityDetailBinding
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,7 +38,7 @@ class DetailActivity : AppCompatActivity() {
         val dataDetail = intent.getParcelableExtra(ASTRO_EXTRA, Astronomy::class.java)
         binding.tvTitle.text = dataDetail?.title
         binding.tvExplanation.text = dataDetail?.explanation
-        Glide.with(this)
+        Picasso.get()
             .load(dataDetail?.url)
             .into(binding.ivPhoto)
 

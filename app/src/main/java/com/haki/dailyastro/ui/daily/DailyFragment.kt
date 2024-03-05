@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -24,15 +25,22 @@ class DailyFragment : Fragment() {
     private var _binding: FragmentDailyBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var theActivity: FragmentActivity
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDailyBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
+            theActivity = requireActivity()
 
             val astronomyAdapter = AstronomyAdapter()
             astronomyAdapter.onItemClick = { selectedData ->
@@ -68,17 +76,16 @@ class DailyFragment : Fragment() {
                 adapter = astronomyAdapter
             }
         }
-        return binding.root
     }
 
     private fun showSnackBar(msg: String) {
         Snackbar.make(
-            requireActivity().findViewById(android.R.id.content),
+            theActivity.findViewById(android.R.id.content),
             msg,
             Snackbar.LENGTH_LONG
         )
             .setAction(getString(R.string.close)) { }
-            .setActionTextColor(ContextCompat.getColor(requireActivity(), R.color.main_orange))
+            .setActionTextColor(ContextCompat.getColor(theActivity, R.color.main_orange))
             .show()
     }
 

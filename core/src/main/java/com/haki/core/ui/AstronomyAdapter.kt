@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.haki.core.R
 import com.haki.core.databinding.DailyItemBinding
 import com.haki.core.domain.model.Astronomy
+import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -44,7 +44,7 @@ class AstronomyAdapter : RecyclerView.Adapter<AstronomyAdapter.ListViewHolder>()
             val simpleDateFormat2 = SimpleDateFormat("dd MMMM yyyy", Locale.US)
 
             with(binding) {
-                Glide.with(itemView.context)
+                Picasso.get()
                     .load(data.url)
                     .into(ivPhoto)
                 tvName.text = data.title

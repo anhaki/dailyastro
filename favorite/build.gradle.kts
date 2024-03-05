@@ -7,7 +7,7 @@ plugins {
 
 }
 
-apply ("../shared_dependencies.gradle")
+apply("../shared_dependencies.gradle")
 
 android {
     namespace = "com.haki.dynamicfeature.favorite"
@@ -28,7 +28,7 @@ android {
         }
     }
 
-    composeOptions{
+    composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
 

@@ -7,7 +7,7 @@ plugins {
 
 }
 
-apply ("../shared_dependencies.gradle")
+apply("../shared_dependencies.gradle")
 
 android {
     namespace = "com.haki.core"
@@ -20,20 +20,20 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
-    composeOptions{
+    composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
         debug {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -82,7 +82,7 @@ dependencies {
     api("androidx.activity:activity-ktx:1.8.2")
     api("androidx.fragment:fragment-ktx:1.6.2")
 
-    implementation ("net.zetetic:android-database-sqlcipher:4.4.0")
-    implementation ("androidx.sqlite:sqlite-ktx:2.4.0")
+    implementation("net.zetetic:android-database-sqlcipher:4.4.0")
+    implementation("androidx.sqlite:sqlite-ktx:2.4.0")
 
 }

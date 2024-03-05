@@ -10,14 +10,15 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.haki.core.data.Resource
 import com.haki.core.domain.model.Astronomy
 import com.haki.dailyastro.R
 import com.haki.dailyastro.databinding.FragmentApodBinding
 import com.haki.dailyastro.ui.detail.DetailActivity
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -37,6 +38,8 @@ class ApodFragment : Fragment() {
     private lateinit var simpleDateFormat1: SimpleDateFormat
     private lateinit var simpleDateFormat2: SimpleDateFormat
 
+    private lateinit var theActivity: FragmentActivity
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,8 +47,13 @@ class ApodFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentApodBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
+            theActivity = requireActivity()
             simpleDateFormat1 = SimpleDateFormat("yyyy-MM-dd", Locale.US)
             simpleDateFormat2 = SimpleDateFormat("dd MMMM yyyy", Locale.US)
 
@@ -62,8 +70,8 @@ class ApodFragment : Fragment() {
             showApod(date)
 
         }
-        return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -82,9 +90,10 @@ class ApodFragment : Fragment() {
                     is Resource.Success -> {
                         val apod = astro.data?.first()
                         binding.tvTitle.text = apod?.title
-                        Glide.with(this)
+                        Picasso.get()
                             .load(apod?.url)
                             .into(binding.ivApod)
+
 
                         binding.tvDate.text =
                             "- ${simpleDateFormat2.format(simpleDateFormat1.parse(apod?.date!!) ?: "")} -"
@@ -111,12 +120,12 @@ class ApodFragment : Fragment() {
 
     private fun showSnackBar(msg: String) {
         Snackbar.make(
-            requireActivity().findViewById(android.R.id.content),
+            theActivity.findViewById(android.R.id.content),
             msg,
             Snackbar.LENGTH_LONG
         )
             .setAction(getString(R.string.close)) { }
-            .setActionTextColor(ContextCompat.getColor(requireActivity(), R.color.main_orange))
+            .setActionTextColor(ContextCompat.getColor(theActivity, R.color.main_orange))
             .show()
     }
 
