@@ -44,7 +44,7 @@ class DailyFragment : Fragment() {
 
             val astronomyAdapter = AstronomyAdapter()
             astronomyAdapter.onItemClick = { selectedData ->
-                val intent = Intent(activity, DetailActivity::class.java)
+                val intent = Intent(theActivity, DetailActivity::class.java)
                 intent.putExtra(DetailActivity.ASTRO_EXTRA, selectedData)
                 startActivity(intent)
             }

@@ -62,7 +62,7 @@ class ApodFragment : Fragment() {
             date = simpleDateFormat1.format(usCalendar.time)
 
             binding.seeDetail.setOnClickListener {
-                val intent = Intent(activity, DetailActivity::class.java)
+                val intent = Intent(theActivity, DetailActivity::class.java)
                 intent.putExtra(DetailActivity.ASTRO_EXTRA, astroData)
                 startActivity(intent)
             }
