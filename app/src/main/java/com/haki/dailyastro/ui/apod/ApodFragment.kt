@@ -63,7 +63,10 @@ class ApodFragment : Fragment() {
 
             binding.seeDetail.setOnClickListener {
                 val intent = Intent(theActivity, DetailActivity::class.java)
-                intent.putExtra(DetailActivity.ASTRO_EXTRA, astroData)
+                intent.putExtra(DetailActivity.TITLE_EXTRA, astroData.title)
+                intent.putExtra(DetailActivity.EXPLANATION_EXTRA, astroData.explanation)
+                intent.putExtra(DetailActivity.PHOTO_EXTRA, astroData.url)
+                intent.putExtra(DetailActivity.DATE_EXTRA, astroData.date)
                 startActivity(intent)
             }
 

@@ -25,7 +25,6 @@ class DetailActivity : AppCompatActivity() {
     private var menu: Menu? = null
     private lateinit var listData: List<Astronomy>
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -35,22 +34,27 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#2A2A2A")))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val dataDetail = intent.getParcelableExtra(ASTRO_EXTRA, Astronomy::class.java)
-        binding.tvTitle.text = dataDetail?.title
-        binding.tvExplanation.text = dataDetail?.explanation
+        val titleDetail = intent.getStringExtra(TITLE_EXTRA)
+        val explanationDetail = intent.getStringExtra(EXPLANATION_EXTRA)
+        val photoDetail = intent.getStringExtra(PHOTO_EXTRA)
+        val dateDetail = intent.getStringExtra(DATE_EXTRA)
+        val hdUrlDetail = intent.getStringExtra(HDURL_EXTRA)
+
+        binding.tvTitle.text = titleDetail
+        binding.tvExplanation.text = explanationDetail
         Picasso.get()
-            .load(dataDetail?.url)
+            .load(photoDetail)
             .into(binding.ivPhoto)
 
-        dataDate = dataDetail?.date.toString()
-        if (dataDetail != null) {
+        dataDate = dateDetail.toString()
+        if (titleDetail != null) {
             listData = listOf(
                 Astronomy(
-                    date = dataDetail.date,
-                    hdurl = dataDetail.hdurl,
-                    explanation = dataDetail.explanation,
-                    title = dataDetail.title,
-                    url = dataDetail.url,
+                    date = dataDate,
+                    hdurl = hdUrlDetail.toString(),
+                    explanation = explanationDetail.toString(),
+                    title = titleDetail,
+                    url = photoDetail.toString(),
                 )
             )
         }
@@ -95,6 +99,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val ASTRO_EXTRA = "ASTRO_EXTRA"
+        const val TITLE_EXTRA = "TITLE_EXTRA"
+        const val PHOTO_EXTRA = "PHOTO_EXTRA"
+        const val EXPLANATION_EXTRA = "EXPLANATION_EXTRA"
+        const val DATE_EXTRA = "DATE_EXTRA"
+        const val HDURL_EXTRA = "HDURL_EXTRA"
     }
 }
